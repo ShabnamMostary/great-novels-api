@@ -12,9 +12,7 @@ const getAuthorById = async (request, response) => {
     where: { id },
     include: [{
       model: models.Novels,
-      include: [{
-        model: models.Genres
-      }]
+      include: [{ model: models.Genres }]
     }]
   })
 
