@@ -1,6 +1,7 @@
 const express = require('express')
 const { getAllAuthors, getAuthorById } = require('./controllers/authorsController')
 const { getAllGenres, getGenreById } = require('./controllers/genresController')
+const { getAllNovels, getNovelById } = require('./controllers/novelsController')
 
 const app = express()
 
@@ -10,6 +11,10 @@ app.get('/authors/:id', getAuthorById)
 app.get('/genres', getAllGenres)
 // Get a Genre with all novels in that genres and those novels author by the genre's Id
 app.get('/genres/:id', getGenreById)
+// Get All Novels with their authors and genres
+app.get('/novels', getAllNovels)
+// Get a Novel with its author and genres the novel's Id
+app.get('/novels/:id', getNovelById)
 
 
 app.listen(1337, () => {
