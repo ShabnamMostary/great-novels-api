@@ -15,13 +15,11 @@ app.get('/genres', getAllGenres)
 app.get('/genres/:id', getGenreById)
 // Get All Novels with their authors and genres
 app.get('/novels', getAllNovels)
-// Get a Novel with its author and genres the novel's Id
+// Get a Novel with its author and genres by the novel's Id
 app.get('/novels/:id', getNovelById)
 app.all('*', (request, response) => {
   return response.sendStatus(404)
 })
-
-
 app.listen(1337, () => {
   console.log('Listening on port 1337...') // eslint-disable-line no-console
 })
