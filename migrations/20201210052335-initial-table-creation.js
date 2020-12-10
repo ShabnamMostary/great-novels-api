@@ -61,10 +61,10 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    await queryInterface.createTable('authors')
-    await queryInterface.createTable('genres')
+    await queryInterface.createTable('novelsGenres')
     await queryInterface.createTable('novels')
+    await queryInterface.createTable('genres')
 
-    return queryInterface.dropTable('novelsGenres')
+    return queryInterface.dropTable('authors')
   }
 }
