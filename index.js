@@ -1,7 +1,7 @@
 const express = require('express')
 const { getAllAuthors, getAuthorByIdOrLastName } = require('./controllers/authorsController')
 const { getAllGenres, getGenreById } = require('./controllers/genresController')
-const { getAllNovels, getNovelById } = require('./controllers/novelsController')
+const { getAllNovels, getNovelByIdOrTitle } = require('./controllers/novelsController')
 
 const app = express()
 
@@ -16,7 +16,7 @@ app.get('/genres/:id', getGenreById)
 // Get All Novels with their authors and genres
 app.get('/novels', getAllNovels)
 // Get a Novel with its author and genres by the novel's Id
-app.get('/novels/:id', getNovelById)
+app.get('/novels/:input', getNovelByIdOrTitle)
 app.all('*', (request, response) => {
   return response.sendStatus(404)
 })

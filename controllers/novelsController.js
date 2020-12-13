@@ -1,4 +1,5 @@
 const models = require('../models')
+const Op = require('Sequelize').Op
 const getAllNovels = async (request, response) => {
   const result = await models.Novels.findAll({
     include: [
@@ -11,10 +12,15 @@ const getAllNovels = async (request, response) => {
     ? response.send(result)
     : response.sendStatus(404)
 }
-const getNovelById = async (request, response) => {
-  const { id } = request.params
+const getNovelByIdOrTitle = async (request, response) => {
+  const { input } = request.params
   const result = await models.Novels.findOne({
-    where: { id },
+    where: {
+      [Op.or]: [
+        { id: input },
+        { title: { [Op.like]: `%${input}%` }, }
+      ],
+    },
     include: [
       { model: models.Authors },
       { model: models.Genres },
@@ -26,4 +32,4 @@ const getNovelById = async (request, response) => {
     : response.sendStatus(404)
 }
 
-module.exports = { getAllNovels, getNovelById }
+module.exports = { getAllNovels, getNovelByIdOrTitle }
