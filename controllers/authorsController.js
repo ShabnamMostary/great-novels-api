@@ -18,8 +18,11 @@ const getAuthorByIdOrLastName = async (request, response) => {
     },
     include: [{
       model: models.Novels,
-      include: [{ model: models.Genres }]
-    }]
+      include: [{
+        model: models.Genres,
+      }]
+    }],
+    order: [[models.Novels, models.Genres, 'id', 'ASC']]
   })
 
   return result
